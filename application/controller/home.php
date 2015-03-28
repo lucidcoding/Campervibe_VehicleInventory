@@ -1,4 +1,5 @@
 <?php
+namespace controllers;
 
 /**
  * Class Home
@@ -8,7 +9,7 @@
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Home extends Controller
+class Home extends \Controller
 {
     /**
      * PAGE: index

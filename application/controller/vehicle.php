@@ -1,6 +1,8 @@
 <?php
+namespace controllers;
 
 require 'application/viewmodels/vehicleviewmodel.php';
+require 'application/entities/Vehicle.php';
 
 /**
  * Class Home
@@ -10,7 +12,7 @@ require 'application/viewmodels/vehicleviewmodel.php';
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Vehicle extends Controller 
+class Vehicle extends \Controller 
 {
     /**
      * PAGE: index
@@ -19,22 +21,46 @@ class Vehicle extends Controller
     public function index()
     {
         // debug message to show where you are, just for the demo
-        echo 'Message from Controller: You are in the controller vehicle, using the method index()';
+        echo 'Message from Controller: You are in the controller vehicle, using the method index() 4';
         // load views. within the views we can echo out $songs and $amount_of_songs easily
         
         date_default_timezone_set('Europe/London');
 
-        $vehicle_model = $this->loadModel('VehicleModel');
-        $vehicles = $vehicle_model->getAllBookings();
+//        $vehicle_model = $this->loadModel('VehicleModel');
+//        $vehicles = $vehicle_model->getAllBookings();
+//        $viewModel = array();
+//        
+//        foreach ($vehicles as $vehicle)
+//        {
+//            $vehicleViewModel = new VehicleViewModel();
+//            $vehicleViewModel->id = $vehicle->id;
+//            $vehicleViewModel->year = $vehicle->year;
+//            $vehicleViewModel->name = $vehicle->name;
+//            $vehicleViewModel->description = $vehicle->description;
+//            array_push($viewModel, $vehicleViewModel);
+//        }
+        
+
+
+        //$vehicle_model = $this->loadModel('VehicleModel');
+        require_once "bootstrap.php";
+        
+$config = $entityManager->getConfiguration();
+$config->addEntityNamespace('e', 'entities');
+
+        $vehicles = $entityManager
+                ->createQuery("SELECT v FROM e:Vehicle v")
+                ->getResult();
+        
         $viewModel = array();
         
         foreach ($vehicles as $vehicle)
         {
-            $vehicleViewModel = new VehicleViewModel();
-            $vehicleViewModel->id = $vehicle->id;
-            $vehicleViewModel->year = $vehicle->year;
-            $vehicleViewModel->name = $vehicle->name;
-            $vehicleViewModel->description = $vehicle->description;
+            $vehicleViewModel = new \VehicleViewModel();
+            $vehicleViewModel->id = $vehicle->getId();
+            $vehicleViewModel->year = $vehicle->getYear();
+            $vehicleViewModel->name = $vehicle->getName();
+            $vehicleViewModel->description = $vehicle->getDescription();
             array_push($viewModel, $vehicleViewModel);
         }
         

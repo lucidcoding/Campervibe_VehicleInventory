@@ -1,0 +1,17 @@
+{
+    "name": "vendor/campervibe-vehicle-inventory",
+    "description": "Description of project CampervibeVehicleInventory.",
+    "authors": [
+        {
+            "name": "Paul",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "v2.4.7",
+        "symfony/yaml": "v2.6.5"
+    },
+    "autoload": {
+        "psr-0": {"": "application/entities"}
+    }
+}

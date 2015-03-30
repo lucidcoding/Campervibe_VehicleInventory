@@ -1,4 +1,6 @@
 <?php
+namespace viewmodels;
+
 class VehicleViewModel 
 {
     var $id;

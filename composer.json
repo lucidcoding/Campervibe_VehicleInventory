@@ -9,7 +9,8 @@
     ],
     "require": {
         "doctrine/orm": "v2.4.7",
-        "symfony/yaml": "v2.6.5"
+        "symfony/yaml": "v2.6.5",
+        "mnapoli/php-di": "4.4.7"
     },
     "autoload": {
         "psr-0": {"": "application/entities"}

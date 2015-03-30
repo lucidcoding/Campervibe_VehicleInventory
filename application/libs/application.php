@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 class Application
 {
     /** @var null The controller */
@@ -27,6 +29,27 @@ class Application
         $this->splitUrl();
         
 
+        
+        $builder = new \DI\ContainerBuilder();
+//        //$builder->addDefinitions('./config/diconfig.php');
+//        $builder->setDefinitionCache(new Doctrine\Common\Cache\ArrayCache());
+//        $container = $builder->build();
+//        $container->set('repositories\contracts\iVehicleRepository', DI\object()->constructor('repositories\implementation\VehicleRepository'));
+//        //$containerBuilder->addDefinitions('config.php');
+        
+        //$builder = new ContainerBuilder();
+        //$builder->addDefinitions('./config/diconfig.php');
+        $container = $builder->build();
+        
+//        $container->set('repositories\contracts\iVehicleRepository', \DI\object()
+//            ->constructor('repositories\implementation\VehicleRepository'));
+        
+        
+        $container->set('\repositories\contracts\iVehicleRepository', 
+                DI\object('\repositories\implementation\VehicleRepository'));
+        
+        
+        
         // check for controller: does such a controller exist ?
         if (file_exists('./application/controller/' . $this->url_controller . '.php')) {
 
@@ -34,9 +57,17 @@ class Application
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
             require './application/controller/' . $this->url_controller . '.php';
             $controller_name = "controllers\\$this->url_controller";
-echo "URL: $controller_name, $this->url_action";
-            $this->url_controller = new $controller_name();
-
+            
+            
+            if($controller_name == 'controllers\vehicle')
+            {
+                $this->url_controller = $container->get('controllers\Vehicle');
+            }
+            else
+            {
+                $this->url_controller = new $controller_name();
+            }
+            
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->url_controller, $this->url_action)) {
 

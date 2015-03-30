@@ -1,0 +1,2 @@
+repositories\contracts\iVehicleRepository:
+    class: repositories\contracts\VehicleRepository

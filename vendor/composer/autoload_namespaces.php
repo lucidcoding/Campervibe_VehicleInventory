@@ -6,8 +6,14 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Zend\\Stdlib\\' => array($vendorDir . '/zendframework/zend-stdlib'),
+    'Zend\\EventManager\\' => array($vendorDir . '/zendframework/zend-eventmanager'),
+    'Zend\\Code\\' => array($vendorDir . '/zendframework/zend-code'),
+    'UnitTest' => array($vendorDir . '/mnapoli/phpdocreader/tests'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'ProxyManager\\' => array($vendorDir . '/ocramius/proxy-manager/src'),
+    'PhpDocReader' => array($vendorDir . '/mnapoli/phpdocreader/src'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
@@ -16,4 +22,5 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
+    '' => array($baseDir . '/application/entities'),
 );

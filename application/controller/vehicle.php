@@ -3,7 +3,9 @@ namespace controllers;
 
 require 'application/viewmodels/vehicleviewmodel.php';
 require 'application/entities/Vehicle.php';
+require 'application/repositories/implementations/vehiclerepository.php';
 
+use repositories\contracts\iVehicleRepository as iVehicleRepository;
 /**
  * Class Home
  *
@@ -12,62 +14,37 @@ require 'application/entities/Vehicle.php';
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Vehicle extends \Controller 
+class Vehicle //extends \Controller 
 {
+    protected $vehicleRepository;
+    
+    //public function __construct(iVehicleRepository $vehicleRepository)
+    public function __construct(\repositories\implementations\VehicleRepository $vehicleRepository)
+    {
+        $this->vehicleRepository = $vehicleRepository;
+    }
+    
     /**
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
      */
     public function index()
     {
-        // debug message to show where you are, just for the demo
-        echo 'Message from Controller: You are in the controller vehicle, using the method index() 4';
-        // load views. within the views we can echo out $songs and $amount_of_songs easily
-        
         date_default_timezone_set('Europe/London');
-
-//        $vehicle_model = $this->loadModel('VehicleModel');
-//        $vehicles = $vehicle_model->getAllBookings();
-//        $viewModel = array();
-//        
-//        foreach ($vehicles as $vehicle)
-//        {
-//            $vehicleViewModel = new VehicleViewModel();
-//            $vehicleViewModel->id = $vehicle->id;
-//            $vehicleViewModel->year = $vehicle->year;
-//            $vehicleViewModel->name = $vehicle->name;
-//            $vehicleViewModel->description = $vehicle->description;
-//            array_push($viewModel, $vehicleViewModel);
-//        }
-        
-
-
-        //$vehicle_model = $this->loadModel('VehicleModel');
-        require_once "bootstrap.php";
-        
-$config = $entityManager->getConfiguration();
-$config->addEntityNamespace('e', 'entities');
-
-        $vehicles = $entityManager
-                ->createQuery("SELECT v FROM e:Vehicle v")
-                ->getResult();
+        $vehicles = $this->vehicleRepository->getAll();
         
         $viewModel = array();
         
         foreach ($vehicles as $vehicle)
         {
-            $vehicleViewModel = new \VehicleViewModel();
+            $vehicleViewModel = new \viewmodels\VehicleViewModel();
             $vehicleViewModel->id = $vehicle->getId();
             $vehicleViewModel->year = $vehicle->getYear();
             $vehicleViewModel->name = $vehicle->getName();
             $vehicleViewModel->description = $vehicle->getDescription();
             array_push($viewModel, $vehicleViewModel);
         }
-        
-        $entity_count = count($vehicles);
-        $viewmodel_count = count($viewModel);
-        echo "counts: $entity_count, $viewmodel_count";
-        
+                
         require 'application/views/_templates/header.php';
         require 'application/views/vehicle/index.php';
         require 'application/views/_templates/footer.php';

@@ -1,12 +1,11 @@
 <?php 
 namespace entities;
 
-require 'application/entities/model.php';
-
+require 'application/entities/make.php';
 /**
- * @Entity @Table(name="Vehicle")
+ * @Entity @Table(name="Model")
  **/
-class Vehicle
+class Model
 {
     /**
     * @Id
@@ -14,23 +13,20 @@ class Vehicle
     */
     protected $id;
     
-    /** @Column(type="guid") **/
-    protected $modelId;
-     
     /**
-     * @ManyToOne(targetEntity="Model", inversedBy="vehicles")
-     * @JoinColumn(name="modelId", referencedColumnName="id")
+     * @OneToMany(targetEntity="Vehicle", mappedBy="model")
+     * @var Vehicle[]
      **/
-    protected $model;
+    protected $vehicles = null;
     
+    /**
+     * @ManyToOne(targetEntity="Make", inversedBy="models")
+     * @JoinColumn(name="makeId", referencedColumnName="id")
+     **/
+    protected $make;
+        
     /** @Column(type="string") **/
     protected $name;
-    
-    /** @Column(type="integer") **/
-    protected $year;
-    
-    /** @Column(type="string") **/
-    protected $description;
     
     /** @Column(type="guid") **/
     protected $createdBy;
@@ -49,24 +45,14 @@ class Vehicle
         return $this->id;
     }
 
-    public function getModelId()
+    public function getMake()
     {
-        return $this->modelId;
+        return $this->make;
     }
 
-    public function setModelId($modelId)
+    public function setMake($make)
     {
-        $this->modelId = $modelId;
-    }
-    
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    public function setModel($model)
-    {
-        $this->modelId = $model;
+        $this->make = $make;
     }
     
     public function getName()
@@ -77,26 +63,6 @@ class Vehicle
     public function setName($name)
     {
         $this->name = $name;
-    }
-    
-    public function getYear()
-    {
-        return $this->year;
-    }
-
-    public function setYear($year)
-    {
-        $this->year = $year;
-    }
-    
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
     }
     
     public function getCreatedBy()

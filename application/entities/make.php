@@ -1,12 +1,9 @@
 <?php 
 namespace entities;
-
-require 'application/entities/model.php';
-
 /**
- * @Entity @Table(name="Vehicle")
+ * @Entity @Table(name="Make")
  **/
-class Vehicle
+class Make
 {
     /**
     * @Id
@@ -14,23 +11,14 @@ class Vehicle
     */
     protected $id;
     
-    /** @Column(type="guid") **/
-    protected $modelId;
-     
     /**
-     * @ManyToOne(targetEntity="Model", inversedBy="vehicles")
-     * @JoinColumn(name="modelId", referencedColumnName="id")
+     * @OneToMany(targetEntity="Model", mappedBy="make")
+     * @var Model[]
      **/
-    protected $model;
+    protected $models = null;
     
     /** @Column(type="string") **/
     protected $name;
-    
-    /** @Column(type="integer") **/
-    protected $year;
-    
-    /** @Column(type="string") **/
-    protected $description;
     
     /** @Column(type="guid") **/
     protected $createdBy;
@@ -48,26 +36,6 @@ class Vehicle
     {
         return $this->id;
     }
-
-    public function getModelId()
-    {
-        return $this->modelId;
-    }
-
-    public function setModelId($modelId)
-    {
-        $this->modelId = $modelId;
-    }
-    
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    public function setModel($model)
-    {
-        $this->modelId = $model;
-    }
     
     public function getName()
     {
@@ -77,26 +45,6 @@ class Vehicle
     public function setName($name)
     {
         $this->name = $name;
-    }
-    
-    public function getYear()
-    {
-        return $this->year;
-    }
-
-    public function setYear($year)
-    {
-        $this->year = $year;
-    }
-    
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
     }
     
     public function getCreatedBy()

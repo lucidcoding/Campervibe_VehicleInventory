@@ -25,49 +25,27 @@ class Application
      */
     public function __construct()
     {
-        // create array with URL parts in $url
         $this->splitUrl();
         
-
-        
         $builder = new \DI\ContainerBuilder();
-//        //$builder->addDefinitions('./config/diconfig.php');
-//        $builder->setDefinitionCache(new Doctrine\Common\Cache\ArrayCache());
-//        $container = $builder->build();
-//        $container->set('repositories\contracts\iVehicleRepository', DI\object()->constructor('repositories\implementation\VehicleRepository'));
-//        //$containerBuilder->addDefinitions('config.php');
-        
-        //$builder = new ContainerBuilder();
-        //$builder->addDefinitions('./config/diconfig.php');
         $container = $builder->build();
-        
-//        $container->set('repositories\contracts\iVehicleRepository', \DI\object()
-//            ->constructor('repositories\implementation\VehicleRepository'));
-        
-        
         $container->set('\repositories\contracts\iVehicleRepository', 
                 DI\object('\repositories\implementation\VehicleRepository'));
         
         
         
         // check for controller: does such a controller exist ?
-        if (file_exists('./application/controller/' . $this->url_controller . '.php')) {
+        if (file_exists('./application/controller/' . $this->url_controller . 'controller.php')) {
 
             // if so, then load this file and create this controller
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
-            require './application/controller/' . $this->url_controller . '.php';
-            $controller_name = "controllers\\$this->url_controller";
+            require './application/controller/' . $this->url_controller . 'controller.php';
+            $controller_name = "controllers\\" . $this->url_controller ."Controller";
             
-            
-            if($controller_name == 'controllers\vehicle')
-            {
-                $this->url_controller = $container->get('controllers\Vehicle');
-            }
-            else
-            {
-                $this->url_controller = new $controller_name();
-            }
-            
+          echo("controller: $controller_name");
+          
+            $this->url_controller = $container->get($controller_name);
+
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->url_controller, $this->url_action)) {
 
@@ -91,9 +69,9 @@ class Application
             }
         } else {
             // invalid URL, so simply show home/index
-            require './application/controller/home.php';
-            $home = new controllers\Home();
-            $home->index();
+            require './application/controller/homecontroller.php';
+            $homeController = new controllers\HomeController();
+            $homeController->index();
         }
     }
 

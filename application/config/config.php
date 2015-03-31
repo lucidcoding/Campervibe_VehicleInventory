@@ -29,9 +29,9 @@ define('URL', 'http://localhost:3306/');
 //define('DB_NAME', 'campervibeVehicleInventory');
 //define('DB_USER', 'root');
 //define('DB_PASS', '');
-
-define('DB_TYPE', 'mysql');
-define('DB_HOST', 'eu-cdbr-azure-north-c.cloudapp.net');
-define('DB_NAME', 'as_1e3b9273989bc6e');
-define('DB_USER', 'b6b7f8d99c76f5');
-define('DB_PASS', '2b9895e9');
+//
+//define('DB_TYPE', 'mysql');
+//define('DB_HOST', 'eu-cdbr-azure-north-c.cloudapp.net');
+//define('DB_NAME', 'as_1e3b9273989bc6e');
+//define('DB_USER', 'b6b7f8d99c76f5');
+//define('DB_PASS', '2b9895e9');

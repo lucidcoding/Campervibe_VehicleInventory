@@ -2,10 +2,11 @@
 namespace controllers;
 
 require 'application/viewmodels/vehicleviewmodel.php';
-require 'application/entities/Vehicle.php';
-require 'application/repositories/implementations/vehiclerepository.php';
+require 'application/entities/vehicle.php';
+require 'application/repositories/vehiclerepository.php';
 
-use repositories\contracts\iVehicleRepository as iVehicleRepository;
+use repositories\VehicleRepository;
+
 /**
  * Class Home
  *
@@ -14,12 +15,16 @@ use repositories\contracts\iVehicleRepository as iVehicleRepository;
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Vehicle //extends \Controller 
+class VehicleController 
 {
     protected $vehicleRepository;
     
     //public function __construct(iVehicleRepository $vehicleRepository)
-    public function __construct(\repositories\implementations\VehicleRepository $vehicleRepository)
+    /**
+     * @Inject
+     * @param repositories\VehicleRepository $vehicleRepository
+     */
+    public function __construct($vehicleRepository)
     {
         $this->vehicleRepository = $vehicleRepository;
     }
@@ -39,6 +44,8 @@ class Vehicle //extends \Controller
         {
             $vehicleViewModel = new \viewmodels\VehicleViewModel();
             $vehicleViewModel->id = $vehicle->getId();
+            $vehicleViewModel->makeName = $vehicle->getModel()->getMake()->getName();
+            $vehicleViewModel->modelName = $vehicle->getModel()->getName();
             $vehicleViewModel->year = $vehicle->getYear();
             $vehicleViewModel->name = $vehicle->getName();
             $vehicleViewModel->description = $vehicle->getDescription();

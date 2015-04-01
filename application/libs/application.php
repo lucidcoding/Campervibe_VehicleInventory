@@ -41,9 +41,6 @@ class Application
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
             require './application/controller/' . $this->url_controller . 'controller.php';
             $controller_name = "controllers\\" . $this->url_controller ."Controller";
-            
-          echo("controller: $controller_name");
-          
             $this->url_controller = $container->get($controller_name);
 
             // check for method: does such a method exist in the controller ?

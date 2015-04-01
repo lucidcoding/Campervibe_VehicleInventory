@@ -18,6 +18,3 @@ $conn = array(
 // obtaining the entity manager
 $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
 $config->addEntityNamespace('', 'entities');
-//$config = $entityManager->getConfiguration();
-
-echo("config called");

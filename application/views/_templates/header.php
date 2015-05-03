@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Campervibe - Vehicle Inventory</title>
     
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
-    <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
-    <script src="/bower_components/jquery/dist/js/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <script src="/bower_components/jquery/dist/jquery.js" type="application/javascript"></script>
+    <script src="/bower_components/jquery-validation/jquery.validate.js" type="application/javascript"></script>
+    <script src="/bower_components/jquery-validation/additional-methods.js" type="application/javascript"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js" type="application/javascript"></script>
 
 
 </head>
 <body class="campervibe">
     <header role="banner">
-        <nav class="navbar navbar-inverse" role="navigation">
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar">

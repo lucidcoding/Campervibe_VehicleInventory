@@ -1,11 +1,15 @@
 <?php
 namespace controllers;
 
-require 'application/viewmodels/vehicleviewmodel.php';
+require 'application/viewmodels/vehicle/indexviewmodel.php';
+require 'application/viewmodels/vehicle/addviewmodel.php';
 require 'application/entities/vehicle.php';
 require 'application/repositories/vehiclerepository.php';
+require 'application/repositories/makerepository.php';
 
 use repositories\VehicleRepository;
+use viewModels\vehicle\IndexViewModel;
+use viewModels\vehicle\AddViewModel;
 
 /**
  * Class Home
@@ -18,15 +22,18 @@ use repositories\VehicleRepository;
 class VehicleController 
 {
     protected $vehicleRepository;
+    protected $makeRepository;
     
     //public function __construct(iVehicleRepository $vehicleRepository)
     /**
      * @Inject
      * @param repositories\VehicleRepository $vehicleRepository
+     * @param repositories\MakeRepository $makeRepository
      */
-    public function __construct($vehicleRepository)
+    public function __construct($vehicleRepository, $makeRepository)
     {
         $this->vehicleRepository = $vehicleRepository;
+        $this->makeRepository = $makeRepository;
     }
     
     /**
@@ -42,7 +49,7 @@ class VehicleController
         
         foreach ($vehicles as $vehicle)
         {
-            $vehicleViewModel = new \viewmodels\VehicleViewModel();
+            $vehicleViewModel = new IndexViewModel();
             $vehicleViewModel->id = $vehicle->getId();
             $vehicleViewModel->makeName = $vehicle->getModel()->getMake()->getName();
             $vehicleViewModel->modelName = $vehicle->getModel()->getName();
@@ -59,6 +66,9 @@ class VehicleController
 
     public function add()
     {
+        $makes = $this->makeRepository->getAll();
+        $viewModel = new AddViewModel();
+        $viewModel->thing = 'thisTing';
         require 'application/views/_templates/header.php';
         require 'application/views/vehicle/add.php';
         require 'application/views/_templates/footer.php';

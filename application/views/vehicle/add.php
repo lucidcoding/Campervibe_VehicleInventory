@@ -10,6 +10,9 @@
         <label for="make" class="control-label col-sm-3 col-md-3">Make</label>
         <div class="col-sm-6 col-md-6">
             <select id="make" name="make" class="form-control">
+                <?php foreach ($viewModel->makes as $make) { 
+                    echo "<option value=\"$make->value\" >$make->text</option>";
+                } ?>
             </select>
         </div>
     </div>

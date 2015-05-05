@@ -68,7 +68,17 @@ class VehicleController
     {
         $makes = $this->makeRepository->getAll();
         $viewModel = new AddViewModel();
-        $viewModel->thing = 'thisTing';
+        $viewModel->makes = array();
+         
+        foreach ($makes as $make)
+        {
+            $makeOption = new \stdClass();
+            $makeOption->text = $make->getName();
+            $makeOption->value = $make->getId();
+            
+            array_push($viewModel->makes, $makeOption);
+        }
+        
         require 'application/views/_templates/header.php';
         require 'application/views/vehicle/add.php';
         require 'application/views/_templates/footer.php';

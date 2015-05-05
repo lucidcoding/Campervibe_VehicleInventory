@@ -3,6 +3,7 @@ namespace viewmodels\vehicle;
 
 class AddViewModel 
 {
-    var $thing;
+    var $makes;
+    var $models;
 }
 ?>

@@ -4,14 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/controller/vehiclecontroller.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/entities/make.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/config/doctrineconfig.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/vehicle/add.php</file>
             <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/_templates/header.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/index.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/libs/application.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/_templates/footer.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/scripts/vehicle/add.js</file>
             <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/composer.json</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/config/config.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/bower.json</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/_templates/footer.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/vehicle/index.php</file>
         </group>
     </open-files>
 </project-private>

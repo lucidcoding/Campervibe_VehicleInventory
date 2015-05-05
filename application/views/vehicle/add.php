@@ -1,15 +1,35 @@
 <h3>Add Vehicle to Inventory</h3>
-<form id="form" method="POST" action="/vehicle/create" novalidate="novalidate">
+<form id="form" method="POST" action="/vehicle/addPost" novalidate="novalidate" class="form-horizontal">
     <div class="form-group">
-        <label for="name" class="control-label col-sm-3">Name</label>
-        <div class="col-sm-6">
-            <input id="name" name="name" type="text" class="form-control">
+        <label for="name" class="control-label col-sm-3 col-md-3">Name</label>
+        <div class="col-sm-6 col-md-6">
+            <input id="name" name="name" type="text" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="year" class="control-label col-sm-3">Year</label>
-        <div class="col-sm-6">
+        <label for="make" class="control-label col-sm-3 col-md-3">Make</label>
+        <div class="col-sm-6 col-md-6">
+            <select id="make" name="make" class="form-control">
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="model" class="control-label col-sm-3 col-md-3">Model</label>
+        <div class="col-sm-6 col-md-6">
+            <select id="model" name="model" class="form-control">
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="year" class="control-label col-sm-3 col-md-3">Year</label>
+        <div class="col-sm-6 col-md-6">
             <input id="year" name="year" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="control-label col-sm-3 col-md-3">Description</label>
+        <div class="col-sm-6 col-md-6">
+            <input id="description" name="description" type="text" class="form-control">
         </div>
     </div>
     <input id="submit" class="button" type="submit" value="Add"/>
@@ -38,13 +58,7 @@
         });
         
         $("#form").on('submit', function(e){
-            var isvalidate = $("#form").valid();
-            
-            if(isvalidate)
-            {
-                e.preventDefault();
-                //alert(getvalues("form"));
-            }
+            var isValid = $("#form").valid();
         });
     });
 </script>

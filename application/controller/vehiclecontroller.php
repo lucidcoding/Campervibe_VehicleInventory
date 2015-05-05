@@ -63,4 +63,9 @@ class VehicleController
         require 'application/views/vehicle/add.php';
         require 'application/views/_templates/footer.php';
     }
+    
+    public function addPost()
+    {
+        echo 'Hello ' . htmlspecialchars($_POST["name"]) . '!';
+    }
 }

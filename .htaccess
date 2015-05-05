@@ -4,5 +4,3 @@ Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-AddType text/css .css
-AddType application/javascript .js

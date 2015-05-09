@@ -20,4 +20,12 @@ class VehicleRepository
         $entityManager->merge($entity);
         $entityManager->flush();
     }
+    
+    public function remove($entityId)
+    {
+        require "application/config/doctrineconfig.php";
+        $entity = $entityManager->find(":Vehicle", $entityId);
+        $entityManager->remove($entity);
+        $entityManager->flush();
+    }
 }

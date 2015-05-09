@@ -141,4 +141,12 @@ class VehicleController
         header("Location: /Vehicle/Index");
         die();
     }
+    
+    public function delete($vehicleId)
+    {
+        //$vehicleId = $_GET["vehicleId"]
+        $this->vehicleRepository->remove($vehicleId);
+        header("Location: /Vehicle/Index");
+        die();
+    }
 }

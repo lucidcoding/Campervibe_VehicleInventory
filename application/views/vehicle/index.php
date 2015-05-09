@@ -18,7 +18,7 @@
             <td><?php if (isset($vehicle->modelName)) echo $vehicle->modelName; ?></td>
             <td><?php if (isset($vehicle->year)) echo $vehicle->year; ?></td>
             <td><?php if (isset($vehicle->description)) echo $vehicle->description; ?></td>
-            <td><?php if (isset($vehicle->id)) echo $vehicle->id; ?></td>
+            <td><?php if (isset($vehicle->id)) echo '<a href="/vehicle/delete/' . $vehicle->id . '" >Delete</a>'; ?></td>
         </tr>
     <?php } ?>
     </tbody>  

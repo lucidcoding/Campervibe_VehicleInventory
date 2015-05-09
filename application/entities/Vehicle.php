@@ -2,6 +2,7 @@
 namespace entities;
 
 require 'application/entities/model.php';
+require 'application/entities/user.php';
 
 /**
  * @Entity @Table(name="Vehicle")
@@ -15,7 +16,7 @@ class Vehicle
     protected $id;
     
     /** @Column(type="guid") **/
-    protected $modelId;
+    //protected $modelId;
      
     /**
      * @ManyToOne(targetEntity="Model", inversedBy="vehicles")
@@ -31,14 +32,20 @@ class Vehicle
     
     /** @Column(type="string") **/
     protected $description;
-    
-    /** @Column(type="guid") **/
+       
+    /**
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="createdBy", referencedColumnName="id")
+     **/
     protected $createdBy;
     
     /** @Column(type="datetime") **/
     protected $createdOn;
-    
-    /** @Column(type="guid") **/
+       
+    /**
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="lastModifiedBy", referencedColumnName="id")
+     **/
     protected $lastModifiedBy;
     
     /** @Column(type="datetime") **/
@@ -137,6 +144,21 @@ class Vehicle
     public function setLastModifiedOn($lastModifiedOn)
     {
         $this->lastModifiedOn = $lastModifiedOn;
+    }
+    
+    public static function add($name, $model, $year, $description, $createdBy)
+    {
+        $vehicle = new Vehicle();
+        $vehicle->id = str_replace("}", "", str_replace("{", "", \com_create_guid()));
+        $vehicle->model = $model;
+        $vehicle->name = $name;
+        $vehicle->year = $year;
+        $vehicle->description = $description;
+        $vehicle->createdBy = $createdBy;
+        $vehicle->createdOn = new \DateTime();
+        //$vehicle->lastModifiedBy;
+        $vehicle->lastModifiedOn = new \DateTime();
+        return $vehicle;
     }
 }
 ?>

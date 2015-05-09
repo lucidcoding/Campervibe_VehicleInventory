@@ -1,4 +1,4 @@
-<h3>Add Vehicle to Inventory</h3>
+<h1>Add Vehicle to Inventory</h1>
 <form id="form" method="POST" action="/vehicle/addPost" novalidate="novalidate" class="form-horizontal">
     <div class="form-group">
         <label for="name" class="control-label col-sm-3 col-md-3">Name</label>
@@ -9,7 +9,7 @@
     <div class="form-group">
         <label for="make" class="control-label col-sm-3 col-md-3">Make</label>
         <div class="col-sm-6 col-md-6">
-            <select id="make" name="make" class="form-control">
+            <select id="makeId" name="makeId" class="form-control">
                 <?php foreach ($viewModel->makes as $make) { 
                     echo "<option value=\"$make->value\" >$make->text</option>";
                 } ?>
@@ -18,9 +18,8 @@
     </div>
     <div class="form-group">
         <label for="model" class="control-label col-sm-3 col-md-3">Model</label>
-        <div class="col-sm-6 col-md-6">
-            <select id="model" name="model" class="form-control">
-            </select>
+        <div id="modelsSelectDiv" class="col-sm-6 col-md-6">
+            <?php require 'application/views/vehicle/modelsselect.php';  ?>
         </div>
     </div>
     <div class="form-group">
@@ -35,10 +34,30 @@
             <input id="description" name="description" type="text" class="form-control">
         </div>
     </div>
-    <input id="submit" class="button" type="submit" value="Add"/>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input id="submit" class="btn btn-success" type="submit" value="Add"/>
+            <a href="/Vehicle/Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
 </form>
 <script type="application/javascript">
     $(document).ready(function () {
+        
+        $("#makeId").change(function(event){
+            $.ajax({
+                url: "/vehicle/getModelsSelect",
+                data: "makeId=" + $(this).val(),
+                type: "GET",
+                success: function (result) {
+                    $("#modelsSelectDiv").html(result);
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert('error: ' + jqXhr + ', ' + textStatus + ', ' + errorThrown);
+                }
+            });
+        });
+        
         $("#form").validate({
             rules: {
                 name: {

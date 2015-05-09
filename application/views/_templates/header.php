@@ -8,6 +8,7 @@
     
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="/application/styles/site.css" rel="stylesheet" type="text/css" />
     <script src="/bower_components/jquery/dist/jquery.js" type="application/javascript"></script>
     <script src="/bower_components/jquery-validation/jquery.validate.js" type="application/javascript"></script>
     <script src="/bower_components/jquery-validation/additional-methods.js" type="application/javascript"></script>

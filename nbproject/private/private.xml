@@ -5,11 +5,9 @@
         <group>
             <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/controller/vehiclecontroller.php</file>
             <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/vehicle/add.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/_templates/header.php</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/scripts/vehicle/add.js</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/composer.json</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/bower.json</file>
-            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/_templates/footer.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/entities/make.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/viewmodels/vehicle/addviewmodel.php</file>
+            <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/viewmodels/vehicle/indexviewmodel.php</file>
             <file>file:/C:/xampp/htdocs/CampervibeVehicleInventory/application/views/vehicle/index.php</file>
         </group>
     </open-files>

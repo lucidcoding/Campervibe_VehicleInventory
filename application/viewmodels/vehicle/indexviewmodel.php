@@ -1,7 +1,7 @@
 <?php
-namespace viewmodels\vegicle;
+namespace viewmodels\vehicle;
 
-class VeIndexViewModel 
+class IndexViewModel 
 {
     var $id;
     var $makeName;

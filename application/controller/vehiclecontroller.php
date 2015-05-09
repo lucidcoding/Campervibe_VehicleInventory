@@ -6,10 +6,13 @@ require 'application/viewmodels/vehicle/addviewmodel.php';
 require 'application/entities/vehicle.php';
 require 'application/repositories/vehiclerepository.php';
 require 'application/repositories/makerepository.php';
+require 'application/repositories/modelrepository.php';
+require 'application/repositories/userrepository.php';
 
 use repositories\VehicleRepository;
 use viewModels\vehicle\IndexViewModel;
 use viewModels\vehicle\AddViewModel;
+use entities;
 
 /**
  * Class Home
@@ -23,17 +26,27 @@ class VehicleController
 {
     protected $vehicleRepository;
     protected $makeRepository;
+    protected $modelRepository;
+    protected $userRepository;
     
     //public function __construct(iVehicleRepository $vehicleRepository)
     /**
      * @Inject
      * @param repositories\VehicleRepository $vehicleRepository
      * @param repositories\MakeRepository $makeRepository
+     * @param repositories\ModelRepository $modelRepository
+     * @param repositories\UserRepository $userRepository
      */
-    public function __construct($vehicleRepository, $makeRepository)
+    public function __construct(
+            $vehicleRepository, 
+            $makeRepository,
+            $modelRepository,
+            $userRepository)
     {
         $this->vehicleRepository = $vehicleRepository;
         $this->makeRepository = $makeRepository;
+        $this->modelRepository = $modelRepository;
+        $this->userRepository = $userRepository;
     }
     
     /**
@@ -66,17 +79,26 @@ class VehicleController
 
     public function add()
     {
-        $makes = $this->makeRepository->getAll();
         $viewModel = new AddViewModel();
+        $makes = $this->makeRepository->getAll();
+        $models = $this->modelRepository->getAll();
         $viewModel->makes = array();
+        $viewModel->models = array();
          
         foreach ($makes as $make)
         {
             $makeOption = new \stdClass();
             $makeOption->text = $make->getName();
             $makeOption->value = $make->getId();
-            
             array_push($viewModel->makes, $makeOption);
+        }
+        
+        foreach ($models as $model)
+        {
+            $modelOption = new \stdClass();
+            $modelOption->text = $model->getName();
+            $modelOption->value = $model->getId();
+            array_push($viewModel->models, $modelOption);
         }
         
         require 'application/views/_templates/header.php';
@@ -84,8 +106,39 @@ class VehicleController
         require 'application/views/_templates/footer.php';
     }
     
+    public function getModelsSelect()
+    {
+        $viewModel = new AddViewModel();
+        $models = $this->modelRepository->getByMakeId($_GET["makeId"]);
+        $viewModel->models = array();
+        
+        foreach ($models as $model)
+        {
+            $modelOption = new \stdClass();
+            $modelOption->text = $model->getName();
+            $modelOption->value = $model->getId();
+            array_push($viewModel->models, $modelOption);
+        }
+        
+        require 'application/views/vehicle/modelsselect.php';
+    }
+    
     public function addPost()
     {
-        echo 'Hello ' . htmlspecialchars($_POST["name"]) . '!';
+        $model = $this->modelRepository->getById($_POST["modelId"]);
+        $createdBy = $this->userRepository->getById('28F1E900-761E-4287-BC42-0C4CA99A7AE9');
+        
+        $vehicle = entities\Vehicle::add(
+            $_POST["name"], $model, $_POST["year"], $_POST["description"], $createdBy);
+        
+        $this->vehicleRepository->save($vehicle);
+        /*
+        echo 'name: ' . $vehicle->getName();
+        echo 'model name: ' . $vehicle->getModel()->getName();
+        echo 'id:' . $vehicle->getId();
+        */
+        
+        header("Location: /Vehicle/Index");
+        die();
     }
 }

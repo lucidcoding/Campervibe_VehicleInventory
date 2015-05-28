@@ -50,6 +50,17 @@ class VehicleController
     }
     
     /**
+     * PAGE: restindex
+     * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
+     */
+    public function restindex()
+    {
+        $vehicles = $this->vehicleRepository->getAll();
+        
+        echo json_encode($vehicles);
+    }
+    
+    /**
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
      */

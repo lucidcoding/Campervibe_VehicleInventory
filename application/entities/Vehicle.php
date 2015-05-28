@@ -13,7 +13,7 @@ class Vehicle
     * @Id
     * @Column(type="guid")
     */
-    protected $id;
+    public $id;
     
     /** @Column(type="guid") **/
     //protected $modelId;
@@ -22,34 +22,34 @@ class Vehicle
      * @ManyToOne(targetEntity="Model", inversedBy="vehicles")
      * @JoinColumn(name="modelId", referencedColumnName="id")
      **/
-    protected $model;
+    public $model;
     
     /** @Column(type="string") **/
-    protected $name;
+    public $name;
     
     /** @Column(type="integer") **/
-    protected $year;
+    public $year;
     
     /** @Column(type="string") **/
-    protected $description;
+    public $description;
        
     /**
      * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="createdBy", referencedColumnName="id")
      **/
-    protected $createdBy;
+    public $createdBy;
     
     /** @Column(type="datetime") **/
-    protected $createdOn;
+    public $createdOn;
        
     /**
      * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="lastModifiedBy", referencedColumnName="id")
      **/
-    protected $lastModifiedBy;
+    public $lastModifiedBy;
     
     /** @Column(type="datetime") **/
-    protected $lastModifiedOn;
+    public $lastModifiedOn;
     
     public function getId()
     {

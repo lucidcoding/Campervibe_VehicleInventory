@@ -84,6 +84,22 @@ abstract class Enum
     }
 
     /**
+     * Returns instances of the Enum class of all Enum constants
+     *
+     * @return array Constant name in key, Enum instance in value
+     */
+    public static function values()
+    {
+        $values = array();
+
+        foreach (self::toArray() as $key => $value) {
+            $values[$key] = new static($value);
+        }
+
+        return $values;
+    }
+
+    /**
      * Returns all possible values as an array
      *
      * @return array Constant name in key, constant value in value
@@ -119,7 +135,8 @@ abstract class Enum
      */
     public static function isValidKey($key)
     {
-        return in_array($key, self::keys(), true);
+        $array = self::toArray();
+        return isset($array[$key]);
     }
 
     /**

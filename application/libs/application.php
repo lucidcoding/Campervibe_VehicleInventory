@@ -2,6 +2,25 @@
 
 require 'vendor/autoload.php';
 
+/*
+require 'vendor/auth0/auth0-php/src/Auth0.php';
+
+use Auth0\SDK\Auth0;
+
+$auth0 = new Auth0(array(
+            'domain'        => 'https://login.windows.net/paultdhotmail.onmicrosoft.com',
+            'client_id'     => '2d708142-face-4379-bc2d-7ff4bcfe9be2',
+            'client_secret' => 'hPRIcGRAyl/FPKe/5RBje7lYiav3hRbSefMiY1rlyKk=',
+            'redirect_uri'  => 'http://localhost/CampervibeVehicleInventory/'
+        ));
+*/
+
+/*
+ * 
+ * 
+ * https://auth0.com/authenticate/php/azure-ad
+ * https://auth0.com/docs/server-platforms/php
+ */
 class Application
 {
     /** @var null The controller */
@@ -25,6 +44,8 @@ class Application
      */
     public function __construct()
     {
+        
+        
         $this->splitUrl();
         
         $builder = new \DI\ContainerBuilder();

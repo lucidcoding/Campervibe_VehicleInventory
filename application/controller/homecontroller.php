@@ -1,6 +1,16 @@
 <?php
 namespace controllers;
 
+require 'vendor/auth0/auth0-php/src/Auth0.php';
+
+use Auth0\SDK\Auth0;
+
+/*
+
+https://login.windows.net/paultdhotmail.onmicrosoft.com?client_id=2d708142-face-4379-bc2d-7ff4bcfe9be2&redirect_uri=YOUR_APP_CALLBACK&connection=paultdhotmail.onmicrosoft.com
+ * 
+ */
+
 /**
  * Class Home
  *
@@ -17,8 +27,23 @@ class HomeController
      */
     public function index()
     {
+        /*
+        $auth0 = new Auth0(array(
+            'domain'        => 'https://login.windows.net/paultdhotmail.onmicrosoft.com',
+            'client_id'     => '2d708142-face-4379-bc2d-7ff4bcfe9be2',
+            'client_secret' => 'hPRIcGRAyl/FPKe/5RBje7lYiav3hRbSefMiY1rlyKk=',
+            'redirect_uri'  => 'http://localhost/CampervibeVehicleInventory/'
+        ));
+        
+        $email = $auth0->getUserInfo()["email"];
+        
+        echo "email: $email";
+               
+         * 
+         */
+        
         // debug message to show where you are, just for the demo
-        echo 'Message from Controller: You are in the controller home, using the method index()';
+        //echo "Message from Controller: You are in the controller home, using the method index()';
         // load views. within the views we can echo out $songs and $amount_of_songs easily
         require 'application/views/_templates/header.php';
         require 'application/views/home/index.php';

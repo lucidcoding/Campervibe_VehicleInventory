@@ -10,6 +10,16 @@ class AccountController
     public function callback()
     {
         echo "This is from callback";
+
+	$id_token= $_POST['id_token'];
+	$id_array = mb_split(".", $id_token);
+	$id_body = base64url_decode($id_array[1]); 
+
+	echo "body is $id_body";
+	$user_id = $id_body->user_id;
+
+	echo "user_id is $user_id";
+
         $code = $_POST['code'];
         echo "code is $code";
         $client_id = '2d708142-face-4379-bc2d-7ff4bcfe9be2';

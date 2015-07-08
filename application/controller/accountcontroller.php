@@ -15,7 +15,7 @@ class AccountController
 
 	echo "id_token is $id_token<br/><br/>";
 
-	$id_array = mb_split(".", $id_token);
+	$id_array = explode('.',  $id_token); /*mb_split(".", $id_token);*/
 
 	echo "array 1 is $id_array[1]<br/><br/>";
 

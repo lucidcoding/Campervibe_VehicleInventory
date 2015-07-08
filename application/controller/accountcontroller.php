@@ -16,6 +16,9 @@ class AccountController
 	echo "id_token is $id_token<br/><br/>";
 
 	$id_array = mb_split(".", $id_token);
+
+	echo "array 1 is $id_array[1]<br/><br/>";
+
 	$id_body = base64_decode($id_array[1]); 
 
 	echo "body is $id_body<br/><br/>";

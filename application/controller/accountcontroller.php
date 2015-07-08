@@ -13,7 +13,7 @@ class AccountController
 
 	$id_token= $_POST['id_token'];
 	$id_array = mb_split(".", $id_token);
-	$id_body = base64url_decode($id_array[1]); 
+	$id_body = base64_decode($id_array[1]); 
 
 	echo "body is $id_body";
 	$user_id = $id_body->user_id;

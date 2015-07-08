@@ -13,14 +13,12 @@ class AccountController
 
 	$id_token= $_POST['id_token'];
 
-	echo "id_token is $id_token\r\n\r\n";
-
-	echo "\r\n\r\n\r\n\r\n";
+	echo "id_token is $id_token<br/><br/>";
 
 	$id_array = mb_split(".", $id_token);
 	$id_body = base64_decode($id_array[1]); 
 
-	echo "body is $id_body\r\n\r\n";
+	echo "body is $id_body<br/><br/>";
 	$user_id = $id_body->user_id;
 
 	echo "user_id is $user_id";

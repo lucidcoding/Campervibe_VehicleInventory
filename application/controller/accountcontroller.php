@@ -12,6 +12,9 @@ class AccountController
         echo "This is from callback";
 
 	$id_token= $_POST['id_token'];
+
+	echo "id_token is $id_token\r\n\r\n";
+
 	$id_array = mb_split(".", $id_token);
 	$id_body = base64_decode($id_array[1]); 
 

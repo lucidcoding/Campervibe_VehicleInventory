@@ -15,10 +15,12 @@ class AccountController
 
 	echo "id_token is $id_token\r\n\r\n";
 
+	echo "\r\n\r\n\r\n\r\n";
+
 	$id_array = mb_split(".", $id_token);
 	$id_body = base64_decode($id_array[1]); 
 
-	echo "body is $id_body";
+	echo "body is $id_body\r\n\r\n";
 	$user_id = $id_body->user_id;
 
 	echo "user_id is $user_id";

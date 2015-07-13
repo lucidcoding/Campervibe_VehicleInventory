@@ -8,6 +8,7 @@ require 'application/repositories/vehiclerepository.php';
 require 'application/repositories/makerepository.php';
 require 'application/repositories/modelrepository.php';
 require 'application/repositories/userrepository.php';
+require 'application/libs/authentication.php';
 
 use repositories\VehicleRepository;
 use viewModels\vehicle\IndexViewModel;
@@ -73,7 +74,6 @@ class VehicleController
         }
     
         $vehicles = $this->vehicleRepository->getAll();
-        
         echo json_encode($vehicles);
     }
     
@@ -107,6 +107,7 @@ class VehicleController
 
     public function add()
     {
+        \Authentication::checkCookie();
         $viewModel = new AddViewModel();
         $makes = $this->makeRepository->getAll();
         $models = $this->modelRepository->getAll();
@@ -153,26 +154,21 @@ class VehicleController
     
     public function addPost()
     {
+        \Authentication::checkCookie();
         $model = $this->modelRepository->getById($_POST["modelId"]);
-        $createdBy = $this->userRepository->getById('28F1E900-761E-4287-BC42-0C4CA99A7AE9');
+        $createdBy = $_COOKIE['auth_cookie'];
         
         $vehicle = entities\Vehicle::add(
             $_POST["name"], $model, $_POST["year"], $_POST["description"], $createdBy);
         
         $this->vehicleRepository->save($vehicle);
-        /*
-        echo 'name: ' . $vehicle->getName();
-        echo 'model name: ' . $vehicle->getModel()->getName();
-        echo 'id:' . $vehicle->getId();
-        */
-        
         header("Location: /Vehicle/Index");
         die();
     }
     
     public function delete($vehicleId)
     {
-        //$vehicleId = $_GET["vehicleId"]
+        \Authentication::checkCookie();
         $this->vehicleRepository->remove($vehicleId);
         header("Location: /Vehicle/Index");
         die();

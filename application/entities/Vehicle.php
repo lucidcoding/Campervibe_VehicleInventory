@@ -2,7 +2,6 @@
 namespace entities;
 
 require 'application/entities/model.php';
-require 'application/entities/user.php';
 
 /**
  * @Entity @Table(name="Vehicle")
@@ -33,19 +32,13 @@ class Vehicle
     /** @Column(type="string") **/
     public $description;
        
-    /**
-     * @ManyToOne(targetEntity="User")
-     * @JoinColumn(name="createdBy", referencedColumnName="id")
-     **/
+    /** @Column(type="guid") **/
     public $createdBy;
     
     /** @Column(type="datetime") **/
     public $createdOn;
        
-    /**
-     * @ManyToOne(targetEntity="User")
-     * @JoinColumn(name="lastModifiedBy", referencedColumnName="id")
-     **/
+    /** @Column(type="guid") **/
     public $lastModifiedBy;
     
     /** @Column(type="datetime") **/

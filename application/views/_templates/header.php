@@ -39,6 +39,15 @@
                                 <li><a href="../vehicle/index" >List</a></li>
                                 <li><a href="../vehicle/add" >Add</a></li>
                             </ul>
+                            
+                        </li>
+                        <li class="dropdown-open">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bookings</a>
+                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://campervibebooking.azurewebsites.net/booking/index" >List</a></li>
+                                <li><a href="http://campervibebooking.azurewebsites.net/booking/make" >Make</a></li>
+                            </ul>
+                            
                         </li>
                     </ul>
                 </div>

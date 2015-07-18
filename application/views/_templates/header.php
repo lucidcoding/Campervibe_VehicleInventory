@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Campervibe - Vehicle Inventory</title>
+    <title>Campervibe</title>
     
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
@@ -32,9 +32,14 @@
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" >
-                    <ul class="nav navbar-nav">
-                        <li><a href="#" >Item</a></li>
-                        <li><a href="#" >Item</a></li>
+                    <ul class="nav navbar-nav" role="menu">
+                         <li class="dropdown-open">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vehicles</a>
+                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="../vehicle/index" >List</a></li>
+                                <li><a href="../vehicle/add" >Add</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

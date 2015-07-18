@@ -2,25 +2,7 @@
 
 require 'vendor/autoload.php';
 
-/*
-require 'vendor/auth0/auth0-php/src/Auth0.php';
 
-use Auth0\SDK\Auth0;
-
-$auth0 = new Auth0(array(
-            'domain'        => 'https://login.windows.net/paultdhotmail.onmicrosoft.com',
-            'client_id'     => '2d708142-face-4379-bc2d-7ff4bcfe9be2',
-            'client_secret' => 'hPRIcGRAyl/FPKe/5RBje7lYiav3hRbSefMiY1rlyKk=',
-            'redirect_uri'  => 'http://localhost/CampervibeVehicleInventory/'
-        ));
-*/
-
-/*
- * 
- * 
- * https://auth0.com/authenticate/php/azure-ad
- * https://auth0.com/docs/server-platforms/php
- */
 class Application
 {
     /** @var null The controller */
@@ -44,17 +26,13 @@ class Application
      */
     public function __construct()
     {
-        
-        
         $this->splitUrl();
         
         $builder = new \DI\ContainerBuilder();
         $container = $builder->build();
         $container->set('\repositories\contracts\iVehicleRepository', 
                 DI\object('\repositories\implementation\VehicleRepository'));
-        
-        
-        
+
         // check for controller: does such a controller exist ?
         if (file_exists('./application/controller/' . $this->url_controller . 'controller.php')) {
 
@@ -86,10 +64,10 @@ class Application
                 $this->url_controller->index();
             }
         } else {
-            // invalid URL, so simply show home/index
-            require './application/controller/homecontroller.php';
-            $homeController = new controllers\HomeController();
-            $homeController->index();
+            // invalid URL, so simply show vehicle/index
+            require './application/controller/vehiclecontroller.php';
+            $vehicleController = $container->get("controllers\\VehicleController");
+            $vehicleController->index();
         }
     }
 
